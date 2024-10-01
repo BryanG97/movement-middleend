@@ -1,4 +1,4 @@
-package com.msf.movement_middleend.exceptions;
+package com.ms.movement.middleend.exceptions;
 
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
@@ -8,13 +8,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalException {
-
-    /*@ExceptionHandler({
-            FeignException.class
-    })
-    public ResponseEntity<String> exceptionNotControled(Exception e){
-        return ResponseEntity.badRequest().body("Error en la peticion");
-    }*/
 
     @ExceptionHandler({FeignException.BadGateway.class})
     public ResponseEntity<String> exceptionNotControled(FeignException.BadGateway e) {

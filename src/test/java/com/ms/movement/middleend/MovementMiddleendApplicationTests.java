@@ -1,4 +1,4 @@
-package com.msf.movement_middleend;
+package com.ms.movement.middleend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

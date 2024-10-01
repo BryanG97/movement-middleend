@@ -1,17 +1,16 @@
-package com.msf.movement_middleend.controller;
+package com.ms.movement.middleend.controller;
 
-import com.msf.movement_middleend.domain.Movement;
-import com.msf.movement_middleend.service.IMovementService;
+import com.ms.movement.middleend.domain.Movement;
+import com.ms.movement.middleend.service.IMovementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/movement")
+@RequestMapping("/api/v1/movements")
 @RequiredArgsConstructor
 public class MovementController {
-
     private final IMovementService iMovementService;
 
     @PostMapping()
@@ -20,10 +19,17 @@ public class MovementController {
         return new ResponseEntity<>(iMovementService.createMovement(movement), HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping
     @CrossOrigin
-    public ResponseEntity<Movement> movementById(@PathVariable  Integer id) {
-        return new ResponseEntity<>(iMovementService.movementById(id), HttpStatus.CREATED);
+    public ResponseEntity<Movement> getMovements(
+            @RequestParam Integer accountId) {
+
+        Movement movements = iMovementService.movementById(accountId);
+        if (movements == null ) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(movements, HttpStatus.OK);
     }
+
 
 }

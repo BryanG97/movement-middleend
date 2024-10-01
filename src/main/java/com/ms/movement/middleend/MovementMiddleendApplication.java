@@ -1,4 +1,4 @@
-package com.msf.movement_middleend;
+package com.ms.movement.middleend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
