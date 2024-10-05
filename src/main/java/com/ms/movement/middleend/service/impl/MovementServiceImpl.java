@@ -6,6 +6,8 @@ import com.ms.movement.middleend.service.IMovementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MovementServiceImpl implements IMovementService {
@@ -18,7 +20,8 @@ public class MovementServiceImpl implements IMovementService {
     }
 
     @Override
-    public Movement movementById(Integer id) {
-        return movementServiceClient.movementById(id,"asd","asd").getBody();
+    public List<Movement> getMovements(String id) {
+        return movementServiceClient
+                .getMovements("asd","asd", id).getBody();
     }
 }

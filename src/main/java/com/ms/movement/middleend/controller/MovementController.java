@@ -7,10 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/movements")
 @RequiredArgsConstructor
 public class MovementController {
+
     private final IMovementService iMovementService;
 
     @PostMapping()
@@ -19,16 +22,14 @@ public class MovementController {
         return new ResponseEntity<>(iMovementService.createMovement(movement), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @CrossOrigin
-    public ResponseEntity<Movement> getMovements(
-            @RequestParam Integer accountId) {
-
-        Movement movements = iMovementService.movementById(accountId);
-        if (movements == null ) {
+    public ResponseEntity<List<Movement>> getMovements(@PathVariable String id) {
+        List<Movement> accountsMovements = iMovementService.getMovements(id);
+        if (accountsMovements == null ) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(movements, HttpStatus.OK);
+        return new ResponseEntity<>(accountsMovements, HttpStatus.OK);
     }
 
 
